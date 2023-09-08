@@ -1,0 +1,124 @@
+.card {
+  border: 1px solid lightgrey;
+  margin-top: 10px;
+  width: 100%;
+  position: relative;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  box-sizing: border-box;
+  background-color: white;
+  overflow: hidden;
+  flex: -1;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.id {
+  font-weight: bold;
+  font-size: 15px;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  color: grey;
+}
+
+.online-indicator {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 5px;
+  right: 0px;
+  border: 2px white solid;
+}
+
+.online-indicator.online {
+  background-color: #4caf50;
+}
+
+.online-indicator.offline {
+  background-color: #ccc;
+}
+
+.card-image img {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 2px white solid;
+}
+
+.card-image {
+  position: relative;
+  margin: 5px;
+}
+
+.card-content {
+  padding: 5px;
+  flex-grow: 1;
+}
+
+.card-content-text>p {
+  padding: 0;
+  margin: 5px;
+  font-size: medium;
+  font-weight: bold;
+  line-height: 1.5em;
+  max-height: 3em;
+  overflow: hidden;
+  white-space: pre-line;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+.card-content-text{
+  display:flex;
+  margin:5px;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-priorty {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 2px 6px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border-radius: 3px;
+}
+
+.tag {
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  padding: 2px 6px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border-radius: 3px;
+
+}
+
+.grey-circle {
+  width: 15px;
+  height: 15px;
+  margin: 0px;
+  padding: 0px;
+  object-fit: contain;
+  justify-content: center;
+}
+
+.card-content-image {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+  border-radius: 50%;
+  margin: 5px;
+}

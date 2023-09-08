@@ -1,0 +1,94 @@
+.KanbanColumn {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-right: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #f5f5f5;
+}
+
+.KanbanColumn-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f5f5f5;
+}
+
+.KanbanColumn-heading-Name {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.KanbanColumn-heading-len {
+    margin: 5px;
+}
+
+.KanbanColumn-map {
+    align-items: center;
+}
+
+.online-indicator {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 5px;
+    right: 0px;
+    border: 2px white solid;
+}
+
+.online-indicator.online {
+    background-color: #4caf50;
+}
+
+.online-indicator.offline {
+    background-color: #ccc;
+}
+
+.column-image img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    border-radius: 50%;
+    margin: 5px;
+    position: relative;
+}
+
+.column-image {
+    position: relative;
+    margin: 5px;
+}
+
+.KanbanColumn-dot {
+    width: 15px;
+    height: 15px;
+    object-fit: contain;
+    margin: 5px;
+    align-items: center;
+    justify-self: center;
+}
+
+.right-plus {
+    width: 10px;
+    height: 10px;
+    object-fit: contain;
+    border-radius: 50%;
+    margin: 5px;
+    align-items: center;
+    justify-self: center;
+}
+
+.KanbanColumn-heading-left {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.KanbanColumn-heading-right {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
