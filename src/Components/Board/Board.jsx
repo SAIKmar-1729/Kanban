@@ -4,16 +4,32 @@ import Display from './../Display/Display';
 import Column from './../Column/Column';
 
 function Board({ tickets, users }) {
-  const [selectedGrouping, setSelectedGrouping] = useState('Status');
-  const [selectedOrdering, setSelectedOrdering] = useState('Priority');
+
+  const getLocalStorageValue = (key, defaultValue) => {
+    const storedValue = localStorage.getItem(key);
+    return storedValue !== null ? storedValue : defaultValue;
+  };
+
+  // Function to set value in localStorage
+  const setLocalStorageValue = (key, value) => {
+    localStorage.setItem(key, value);
+  };
+  const initialGrouping = getLocalStorageValue('selectedGrouping', 'Status');
+  const initialOrdering = getLocalStorageValue('selectedOrdering', 'Priority');
+
+
+  const [selectedGrouping, setSelectedGrouping] = useState(initialGrouping);
+  const [selectedOrdering, setSelectedOrdering] = useState(initialOrdering);
   const [columnData, setColumnData] = useState({});
 
   const handleGroupingSelect = (grouping) => {
     setSelectedGrouping(grouping);
+    setLocalStorageValue('selectedGrouping', grouping);
   };
 
   const handleOrderingSelect = (ordering) => {
     setSelectedOrdering(ordering);
+    setLocalStorageValue('selectedOrdering', ordering);
   };
 
   const predefinedColumnOrder = ['Backlog', 'Todo', 'In progress', 'Done', 'Cancelled'];
@@ -73,7 +89,9 @@ function Board({ tickets, users }) {
     } else {
       setColumnData(groupedAndSortedData);
     }
+
   }, [selectedGrouping, selectedOrdering, tickets]);
+
   return (
     <>
       <div className="Board">
