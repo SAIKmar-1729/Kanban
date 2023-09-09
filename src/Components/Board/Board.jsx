@@ -44,53 +44,70 @@ function Board({ tickets, users }) {
 
   const fetchDataForGrouping = () => {
     const groupedObjects = {};
+
     tickets.forEach((ticket) => {
       let ticketGrouping;
+
       if (selectedGrouping === 'User') {
         const userObject = users.find((user) => user?.id === ticket.userId);
         ticketGrouping = userObject?.name;
       } else if (selectedGrouping === 'Priority') {
         ticketGrouping = priorityColumnNames[ticket.priority];
-      } else {
+      } else if (selectedGrouping === 'Status') {
         ticketGrouping = ticket[selectedGrouping.toLowerCase()];
       }
+
       groupedObjects[ticketGrouping] = [...(groupedObjects[ticketGrouping] || []), ticket];
     });
 
     for (const groupingKey in groupedObjects) {
       if (groupedObjects.hasOwnProperty(groupingKey)) {
         const group = groupedObjects[groupingKey];
+
         if (selectedOrdering === 'Priority') {
-          group.sort((a, b) => a.priority - b.priority);
+          group.sort((a, b) => b.priority - a.priority);
         } else if (selectedOrdering === 'Title') {
           group.sort((a, b) => a.title.localeCompare(b.title));
         }
       }
     }
+
     return groupedObjects;
   };
 
   useEffect(() => {
     const groupedAndSortedData = fetchDataForGrouping();
-    // If selectedGrouping is 'Status'
+
     if (selectedGrouping === 'Status') {
       const statusColumnData = {};
       predefinedColumnOrder.forEach((colName) => {
-        statusColumnData[colName] = tickets.filter((ticket) => ticket.status === colName);
+        statusColumnData[colName] = groupedAndSortedData[colName] || [];
       });
+
+      for (const colName in statusColumnData) {
+        if (statusColumnData.hasOwnProperty(colName)) {
+          if (selectedOrdering === 'Priority') {
+            statusColumnData[colName].sort((a, b) => b.priority - a.priority);
+          } else if (selectedOrdering === 'Title') {
+            statusColumnData[colName].sort((a, b) => a.title.localeCompare(b.title));
+          }
+        }
+      }
+
       setColumnData(statusColumnData);
     } else if (selectedGrouping === "Priority") { // priority based
       const priorityColumnData = {};
       predefinedPriorityOrder.forEach((priorityValue) => {
         const columnName = priorityColumnNames[priorityValue];
-        priorityColumnData[columnName] = tickets.filter((ticket) => ticket.priority === priorityValue);
+        priorityColumnData[columnName] = groupedAndSortedData[columnName] || [];
       });
+
       setColumnData(priorityColumnData);
     } else {
       setColumnData(groupedAndSortedData);
     }
-
   }, [selectedGrouping, selectedOrdering, tickets]);
+
 
   return (
     <>
